@@ -6,7 +6,7 @@
 /*   By: mythant <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 07:48:45 by mythant           #+#    #+#             */
-/*   Updated: 2025/03/04 11:38:59 by mythant          ###   ########.fr       */
+/*   Updated: 2025/03/13 00:13:55 by mythant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -42,10 +42,10 @@ void	ft_print_argv(int argc, char **argv)
 	{
 		ft_putstr(argv[i]);
 		if (i < argc - 1)
-			write (1, " ", 1);
+			write (1, "\n", 1);
 		i++;
 	}
-	write(1, "\n", 2);
+	write(1, "\n", 1);
 }
 
 int	main(int argc, char **argv)
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 		j = 1;
 		while (j < argc)
 		{
-			if (ft_strcmp(argv[i], argv[j]) > 0)
+			if (ft_strcmp(argv[i], argv[j]) < 0)
 			{
 				t = argv[i];
 				argv[i] = argv[j];
