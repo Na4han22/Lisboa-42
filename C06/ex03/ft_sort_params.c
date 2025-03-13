@@ -11,18 +11,6 @@
 /* ************************************************************************** */
 #include <unistd.h>
 
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write (1, &str[i], 1);
-		i++;
-	}
-}
-
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -37,15 +25,16 @@ void	ft_print_argv(int argc, char **argv)
 {
 	int	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	if (argc > 1)
 	{
-		ft_putstr(argv[i]);
-		if (i < argc - 1)
-			write (1, "\n", 1);
-		i++;
+		while (argv[1][i])
+		{
+			write (1, &argv[1][i], 1);
+			i++;
+		}
+		write(1, "\n", 1);
 	}
-	write(1, "\n", 1);
 }
 
 int	main(int argc, char **argv)
@@ -54,21 +43,25 @@ int	main(int argc, char **argv)
 	int		i;
 	int		j;
 
-	i = 1;
-	while (i < argc - 1)
+	if (argc > 1)
 	{
-		j = i + 1;
-		while (j < argc)
+		i = 1;
+		while (i < argc - 1)
 		{
-			if (ft_strcmp(argv[i], argv[j]) > 0)
+			j = i + 1;
+			while (j < argc)
 			{
-				t = argv[i];
-				argv[i] = argv[j];
-				argv[j] = t;
+				if (ft_strcmp(argv[i], argv[j]) > 0)
+				{
+					t = argv[i];
+					argv[i] = argv[j];
+					argv[j] = t;
+				}
+				j++;
 			}
-			j++;
+			i++;
 		}
-		i++;
+		ft_print_argv(argc, argv);
 	}
-	ft_print_argv(argc, argv);
+	return (0);
 }
