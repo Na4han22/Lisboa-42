@@ -55,12 +55,12 @@ int	main(int argc, char **argv)
 	int		j;
 
 	i = 1;
-	while (i < argc)
+	while (i < argc - 1)
 	{
-		j = 1;
+		j = i + 1;
 		while (j < argc)
 		{
-			if (ft_strcmp(argv[i], argv[j]) < 0)
+			if (ft_strcmp(argv[i], argv[j]) > 0)
 			{
 				t = argv[i];
 				argv[i] = argv[j];
