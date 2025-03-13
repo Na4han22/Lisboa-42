@@ -19,7 +19,7 @@ int	*ft_range(int min, int max)
 	int	size;
 
 	size = max - min;
-	i = 0;	
+	i = 0;
 	array = (int *) malloc(sizeof(int) * size);
 	if (min >= max)
 	{
