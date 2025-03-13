@@ -18,8 +18,7 @@ int	main(int ac, char *av[])
 
 	if (ac == 1)
 	{
-		write (1, "\n", 1);
-		return (0);
+		return (write (1, "\n", 1), 0);
 	}
 	if (ac == 2)
 	{
@@ -31,14 +30,12 @@ int	main(int ac, char *av[])
 				r += av[1][l] - 97;
 			else if (av[1][l] >= 65 && av[1][l] <= 90)
 				r += av[1][l] - 65;
-			while (r)
+			while (r--)
 			{
 				write (1, &av[1][l], 1);
-				r--;
 			}
 			l++;
 		}
-		write(1, "\n", 1);
-		return (0);
 	}
+	return (write (1, "\n", 1), 0);
 }
