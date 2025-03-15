@@ -36,9 +36,9 @@ void	ft_print_argv(char *str)
 	write (1, "\n", 1);
 }
 
-void	ft_swap(char *s1, char *s2)
+void	ft_swap(char **s1, char **s2)
 {
-	int	t;
+	char	*t;
 
 	t = *s1;
 	*s1 = *s2;
@@ -47,7 +47,6 @@ void	ft_swap(char *s1, char *s2)
 
 int	main(int argc, char **argv)
 {
-	char	*t;
 	int		i;
 	int		j;
 
@@ -61,7 +60,7 @@ int	main(int argc, char **argv)
 			{
 				if (ft_strcmp(argv[i], argv[j]) > 0)
 				{
-					ft_swap(argv[i], argv[j]);
+					ft_swap(&argv[i], &argv[j]);
 				}
 				j++;
 			}
