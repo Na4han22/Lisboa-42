@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   last_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mythant <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 05:42:07 by mythant           #+#    #+#             */
-/*   Updated: 2025/03/13 05:53:53 by mythant          ###   ########.fr       */
+/*   Created: 2025/03/19 11:58:58 by mythant           #+#    #+#             */
+/*   Updated: 2025/03/19 12:03:07 by mythant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <limits.h>
+#include <unistd.h>
 
-int	ft_atoi(char *str)
+void	last_word(char *str)
 {
+	int	j;
 	int	i;
-	int	result;
-	int	sign;
 
-	sign = 1;
+	j = 0;
 	i = 0;
-	result = 0;
-	while ((*str >= 9 && *str <= 13) || (*str == ' '))
-		str++;
-	while (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			sign *= -1;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i])
 	{
-		result = result * 10 + (int)str[i] - '0';
-		++i;
+		if (str[i] == 32 && str[i + 1] >= 33 && str[i + 1] <= 126)
+			j = i + 1;
+		i++;
 	}
-	return (result * sign);
+	while (str[j] >= 33 && str[j] <= 127)
+	{
+		write (1, &str[j], 1);
+		j++;
+	}
 }
-/*int	main(void)
+
+int	main(int argc, char **argv)
 {
-	char *n = "-----++1237nabd";
-	printf("test: %d\n", ft_atoi(n));
+	if (argc == 2)
+		last_word (argv[1]);
+	write (1, "\n", 1);
 	return (0);
-}*/
+}

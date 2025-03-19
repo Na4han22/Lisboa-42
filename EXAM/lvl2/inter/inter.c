@@ -1,41 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   inter.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mythant <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 05:42:07 by mythant           #+#    #+#             */
-/*   Updated: 2025/03/13 05:53:53 by mythant          ###   ########.fr       */
+/*   Created: 2025/03/19 11:34:08 by mythant           #+#    #+#             */
+/*   Updated: 2025/03/19 11:41:53 by mythant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <limits.h>
+#include <unistd.h>
 
-int	ft_atoi(char *str)
+int	inter(char *str, char c, int len)
 {
 	int	i;
-	int	result;
-	int	sign;
 
-	sign = 1;
 	i = 0;
-	result = 0;
-	while ((*str >= 9 && *str <= 13) || (*str == ' '))
-		str++;
-	while (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			sign *= -1;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] && (i < len || len == -1))
 	{
-		result = result * 10 + (int)str[i] - '0';
-		++i;
+		if (str[i] == c)
+			return (1);
+		i++;
 	}
-	return (result * sign);
-}
-/*int	main(void)
-{
-	char *n = "-----++1237nabd";
-	printf("test: %d\n", ft_atoi(n));
 	return (0);
-}*/
+}
+
+int	main(int argc, char **argv)
+{
+	int	i;
+
+	if (argc == 3)
+	{
+		i = 0;
+		while (argv[1][i])
+		{
+			if (!inter(argv[1], argv[1][i], i)
+				&& inter(argv[2], argv[1][i], -1))
+				write (1, &argv[1][i], 1);
+			i++;
+		}
+	}
+	write (1, "\n", 1);
+	return (0);
+}

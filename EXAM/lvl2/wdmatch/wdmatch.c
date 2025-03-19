@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   wdmatch.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mythant <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 05:42:07 by mythant           #+#    #+#             */
-/*   Updated: 2025/03/13 05:53:53 by mythant          ###   ########.fr       */
+/*   Created: 2025/03/19 12:58:55 by mythant           #+#    #+#             */
+/*   Updated: 2025/03/19 13:04:49 by mythant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <limits.h>
+#include <unistd.h>
 
-int	ft_atoi(char *str)
+void	wdmatch(char *s1, char *s2)
 {
+	int	len;
 	int	i;
-	int	result;
-	int	sign;
 
-	sign = 1;
+	len = 0;
 	i = 0;
-	result = 0;
-	while ((*str >= 9 && *str <= 13) || (*str == ' '))
-		str++;
-	while (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			sign *= -1;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (s1[len])
+		++len;
+	while (*s2 && i < len)
 	{
-		result = result * 10 + (int)str[i] - '0';
-		++i;
+		if (*s2 == s1[i])
+			i++;
+		s2++;
 	}
-	return (result * sign);
+	if (i == len)
+		write (1, s1, len);
 }
-/*int	main(void)
+
+int	main(int ac, char **av)
 {
-	char *n = "-----++1237nabd";
-	printf("test: %d\n", ft_atoi(n));
+	if (ac == 3)
+		wdmatch(av[1], av[2]);
+	write (1, "\n", 1);
 	return (0);
-}*/
+}
