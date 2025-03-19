@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mythant <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 05:42:07 by mythant           #+#    #+#             */
-/*   Updated: 2025/03/13 05:53:53 by mythant          ###   ########.fr       */
+/*   Created: 2025/03/16 09:58:00 by mythant           #+#    #+#             */
+/*   Updated: 2025/03/16 10:01:40 by mythant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
-#include <limits.h>
+#include <string.h>
 
-int	ft_atoi(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
-	int	result;
-	int	sign;
 
-	sign = 1;
 	i = 0;
-	result = 0;
-	while ((*str >= 9 && *str <= 13) || (*str == ' '))
-		str++;
-	while (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			sign *= -1;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + (int)str[i] - '0';
-		++i;
-	}
-	return (int)(result * sign);
+	while (s1[i] == s2[i] && s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
-/*int	main(void)
+/*int	main()
 {
-	char *n = "-----++1237nabd";
-	printf("test:%d\n", ft_atoi(n));
-	return (0);
+	char	*s1 = "Poopyb";
+	char	*s2 = "poppyb";
+
+	printf("OG:%d\n", strcmp(s1, s2));
+	printf("MNT:%d\n", ft_strcmp(s1, s2));
 }*/

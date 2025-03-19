@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mythant <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/13 05:42:07 by mythant           #+#    #+#             */
-/*   Updated: 2025/03/13 05:53:53 by mythant          ###   ########.fr       */
+/*   Created: 2025/03/16 09:49:34 by mythant           #+#    #+#             */
+/*   Updated: 2025/03/16 09:51:37 by mythant          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <limits.h>
+#include <unistd.h>
 
-int	ft_atoi(char *str)
+void	ft_putstr(char *str)
 {
 	int	i;
-	int	result;
-	int	sign;
 
-	sign = 1;
 	i = 0;
-	result = 0;
-	while ((*str >= 9 && *str <= 13) || (*str == ' '))
-		str++;
-	while (*str == '+' || *str == '-')
-		if (*str++ == '-')
-			sign *= -1;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] != '\0')
 	{
-		result = result * 10 + (int)str[i] - '0';
-		++i;
+		write (1, &str[i], 1);
+		i++;
 	}
-	return (int)(result * sign);
 }
+
 /*int	main(void)
 {
-	char *n = "-----++1237nabd";
-	printf("test:%d\n", ft_atoi(n));
-	return (0);
-}*/
+	char *str = "Shakira";
+	ft_putstr(str);
+}
+*/
